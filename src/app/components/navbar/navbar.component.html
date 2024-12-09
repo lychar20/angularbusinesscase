@@ -1,0 +1,9 @@
+<div *ngIf="isVisible$ | async" class="flex">
+    <div class="m-auto">
+      <h1 router-link="/" class="">E L E C R O A D</h1>
+    </div>
+    <div *ngIf="token$ | async" class="flex justify-end">
+      <a routerLink="/power/list">Puissances</a>
+      <button (click)="onClikLogOut()">LogOut</button>
+    </div>
+  </div>

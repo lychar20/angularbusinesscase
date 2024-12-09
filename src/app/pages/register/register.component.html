@@ -1,0 +1,49 @@
+<div class="flex justify-center items-center w-full h-full max-w-xs m-auto">
+    <form [formGroup]="form" (ngSubmit)="onSubmitForm()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div *ngIf="errMsg" class="mb-4 py-1 px-2 border border-red-500 text-red-500 text-xs text-center">{{ errMsg }}</div>
+  
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+          Email
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('email')" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" formControlName="email">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="firstName">
+          First Name
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('firstName')" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="firstName" type="text" placeholder="First Name" formControlName="firstName">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="lastName">
+          Last Name
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('lastName')" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="lastName" type="text" placeholder="Last Name" formControlName="lastName">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="phone">
+          Phone
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('phone')" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone" type="text" placeholder="Phone" formControlName="phone">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="birthDate">
+          Birth Date
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('birthDate')" (keyup)="onKeyUp($event)" (keydown)="onKeyDown($event)" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="birthDate" type="text" placeholder="01/01/1998" formControlName="birthDate">
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label>
+        <input [class.input-invalid]="isFieldInvalid('password')" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Password" formControlName="password">
+      </div>
+  
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        class="w-full bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Sign UP
+      </button>
+    </form>
+  </div>
