@@ -10,11 +10,13 @@ import { PowerListComponent } from './pages/power-list/power-list.component';
 import { AddPowerComponent } from './pages/add-power/add-power.component';
 import { PowerDetailComponent } from './pages/power-detail/power-detail.component';
 import { EditPowerComponent } from './pages/edit-power/edit-power.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
 
 export const routes: Routes = [
-    {path: '', canActivate: [authGuard], component: DashboardComponent},
-    {path: 'login', canActivate: [noAuthGuard], component: LoginComponent},
-    {path: 'register', canActivate: [noAuthGuard], component: RegisterComponent},
+    {path: '', canActivate: [authGuard], component: WelcomeComponent},
+    {path: 'login', canActivate: [authGuard], component: LoginComponent},
+    {path: 'register', canActivate: [authGuard], component: RegisterComponent},
+    {path: 'dasboard', canActivate: [noAuthGuard], component: DashboardComponent},
 
 
   /*   {path: 'power/list', canActivate: [authGuard], component: PowerListComponent},

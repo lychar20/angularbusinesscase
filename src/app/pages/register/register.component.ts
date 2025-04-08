@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { RegisterInput } from '../../entities/register.entity';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
@@ -27,8 +27,9 @@ export class RegisterComponent implements OnInit {
       lastName: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required]),
       birthDate: new FormControl('', [Validators.required, Validators.pattern('^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19[0-9]{2}|20[0-9]{2})$')]),
-      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')] )
-    })
+      password: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')] ),
+      confirmedPassword: new FormControl('', [Validators.required])
+    }, { validators: this.passwordMatchValidator() })
   }
 
   async onSubmitForm(): Promise <void> {
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
         phone: this.form.value.phone,
         birthDate: RegisterInput.formatBirthDate(this.form.value.birthDate),
         password: this.form.value.password,
+        confirmedPassword: this.form.value.confirmedPassword,
       }
       console.log(registerInput)
       try {
@@ -77,5 +79,19 @@ export class RegisterComponent implements OnInit {
     if (evt.keyCode < 48 || (evt.keyCode > 57 && evt.keyCode < 96) || evt.keyCode > 105)
       evt.preventDefault()
   }
+
+
+
+  passwordMatchValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: boolean } | null => {
+      const password = control.get('password');
+      const confirmedPassword = control.get('confirmedPassword');
+  
+      if (!password || !confirmedPassword) return null;
+  
+      return password.value === confirmedPassword.value ? null : { 'mismatch': true };
+    };
+  }
+
 
 }
