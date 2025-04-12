@@ -1,10 +1,11 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, } from '@angular/core';
 import { BookingService } from '../../services/booking/booking.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { AddBookingInput } from '../../entities/booking.entity';
 import { BookingFormComponent } from '../../components/booking-form/booking-form.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @Component({
@@ -12,20 +13,22 @@ import { ReactiveFormsModule } from '@angular/forms';
   standalone: true,
   imports: [ReactiveFormsModule,BookingFormComponent],
   templateUrl: './add-booking.component.html',
-  styleUrl: './add-booking.component.css'
+  styleUrls: ['./add-booking.component.css']
 })
 export class AddBookingComponent {
   private readonly bookingService: BookingService = inject(BookingService)
   private readonly router = inject(Router)
 
 
-  chargingStationId: string = '';
+  @Input({ required: true}) id: string;
+
+
 
 
   async onBookingSubmitted(addBookingInput: AddBookingInput): Promise<void> {
     console.log("Received booking input:", addBookingInput); // Log des données reçues
     try {
-        await this.bookingService.create(this.chargingStationId, addBookingInput);
+        await this.bookingService.create(this.id, addBookingInput);
         console.log("Booking created successfully"); // Confirmer que la réservation a été créée
         this.router.navigateByUrl('/dasboard');
     } catch (error) {

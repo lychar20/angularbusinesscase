@@ -34,14 +34,14 @@ export class BookingService {
       }    */
 
 
-      create(chargingStationId: string, bookingData: AddBookingInput): Observable<any> {
+      create(id: string, bookingData: AddBookingInput): Observable<any> {
         const payload = {
-            // Assurez-vous que vous remplissez le DTO correctement
+            
             startedAt: bookingData.startedAt,
             finishedAt: bookingData.finishedAt,
-            // Ajoutez d'autres champs si nécessaire
+           
         };
-        return this.http.post(`${this.rootUrl}/${this.resource}/${chargingStationId}`, payload);
+        return this.http.post(`${this.rootUrl}/${this.resource}/${id}`, payload);
     } 
 
 
