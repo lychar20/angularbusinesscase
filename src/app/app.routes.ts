@@ -11,16 +11,25 @@ import { AddPowerComponent } from './pages/add-power/add-power.component';
 import { PowerDetailComponent } from './pages/power-detail/power-detail.component';
 import { EditPowerComponent } from './pages/edit-power/edit-power.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { CharginStationsListComponent } from './pages/chargin-stations-list/chargin-stations-list.component';
+import { AddBookingComponent } from './pages/add-booking/add-booking.component';
 
 export const routes: Routes = [
-    {path: '', canActivate: [authGuard], component: WelcomeComponent},
-    {path: 'login', canActivate: [authGuard], component: LoginComponent},
-    {path: 'register', canActivate: [authGuard], component: RegisterComponent},
-    {path: 'dasboard', canActivate: [noAuthGuard], component: DashboardComponent},
+    {path: '', canActivate: [noAuthGuard], component: WelcomeComponent},
+    {path: 'login', canActivate: [noAuthGuard], component: LoginComponent},
+    {path: 'register', canActivate: [noAuthGuard], component: RegisterComponent},
+    {path: 'dasboard', canActivate: [authGuard], component: DashboardComponent},
+    {path: 'chargin-stations-list', canActivate: [authGuard], component: CharginStationsListComponent},
 
 
-  /*   {path: 'power/list', canActivate: [authGuard], component: PowerListComponent},
-    {path: 'power/add', canActivate: [authGuard], component: AddPowerComponent}, */
+
+    {path: 'booking', canActivate: [authGuard], children: [
+      {path: ':id', component: AddBookingComponent}
+     // {path: 'edit/:id', component: EditPowerComponent},
+     // {path: ':id', component: PowerDetailComponent},
+  ]},
+
+
 
     {path: 'power', canActivate: [authGuard], children: [
         {path: '', redirectTo:'list', pathMatch: 'full'},

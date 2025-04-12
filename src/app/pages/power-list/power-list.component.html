@@ -13,8 +13,8 @@
       <td>{{power.id}}</td>
       <td>{{power.value}}</td>
       <td>
-        <a [routerLink]="['/power', power.id]">Detail</a>
-        <a [routerLink]="['/power','edit', power.id]">Edit</a>
+        <a class="text-gray-600 hover:text-gray-800" [routerLink]="['/power', power.id]">Detail</a>
+        <a class="text-gray-600 hover:text-gray-800" [routerLink]="['/power','edit', power.id]">Edit</a>
         <button (click)="onClickDelete(power.id)">Delete</button>
       </td>
     </tr>

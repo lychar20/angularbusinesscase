@@ -1,1 +1,88 @@
-<p>dashboard works!</p>
+<div class="bg-white min-h-screen p-5">
+    <h1 class="text-3xl font-bold mb-6">Tableau de bord</h1>
+  
+    <div class="mb-8">
+      <h2 class="text-blue-600 text-2xl mb-4">Réservations Actuelles</h2>
+      <ng-container *ngIf="bookings.length > 0; else noCurrentBookings">
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="py-2 px-4 border-b">Date et heure début</th>
+              <th class="py-2 px-4 border-b">Date et heure fin</th>
+              <th class="py-2 px-4 border-b">Adresse</th>
+              <th class="py-2 px-4 border-b">Montant réglé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let booking of bookings" class="hover:bg-gray-50">
+              <td class="py-2 px-4 border-b">{{booking.startedAt}}</td>
+              <td class="py-2 px-4 border-b">{{booking.finishedAt}}</td>
+              <td class="py-2 px-4 border-b">{{booking.localisation.streetNumber}} {{booking.localisation.streetName}}, {{booking.localisation.zipCode}} {{booking.localisation.city}}</td>
+              <td class="py-2 px-4 border-b">{{booking.totalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #noCurrentBookings>
+        <p class="text-gray-500">Vous n'avez pas de réservation</p>
+      </ng-template>
+    </div>
+  
+    <div class="mb-8">
+      <h2 class="text-blue-600 text-2xl mb-4">Réservations Futures</h2>
+      <ng-container *ngIf="futureBookings.length > 0; else noFutureBookings">
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="py-2 px-4 border-b">Date et heure début</th>
+              <th class="py-2 px-4 border-b">Date et heure fin</th>
+              <th class="py-2 px-4 border-b">Ville, adresse</th>
+              <th class="py-2 px-4 border-b">Montant réglé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let futureBooking of futureBookings" class="hover:bg-gray-50">
+              <td class="py-2 px-4 border-b">{{futureBooking.startedAt}}</td>
+              <td class="py-2 px-4 border-b">{{futureBooking.finishedAt}}</td>
+              <td class="py-2 px-4 border-b">{{futureBooking.localisation.streetNumber}} {{futureBooking.localisation.streetName}}, {{futureBooking.localisation.zipCode}} {{futureBooking.localisation.city}}</td>
+              <td class="py-2 px-4 border-b">{{futureBooking.totalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #noFutureBookings>
+        <p class="text-gray-500">Vous n'avez pas de réservation</p>
+      </ng-template>
+    </div>
+  
+    <div class="mb-8">
+      <h2 class="text-blue-600 text-2xl mb-4">Réservations Antérieures</h2>
+      <ng-container *ngIf="anteriorBookings.length > 0; else noAnteriorBookings">
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+              <th class="py-2 px-4 border-b">Date et heure début</th>
+              <th class="py-2 px-4 border-b">Date et heure fin</th>
+              <th class="py-2 px-4 border-b">Ville, adresse</th>
+              <th class="py-2 px-4 border-b">Montant réglé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let anteriorBooking of anteriorBookings" class="hover:bg-gray-50">
+              <td class="py-2 px-4 border-b">{{anteriorBooking.startedAt}}</td>
+              <td class="py-2 px-4 border-b">{{anteriorBooking.finishedAt}}</td>
+              <td class="py-2 px-4 border-b">{{anteriorBooking.localisation.streetNumber}} {{anteriorBooking.localisation.streetName}}, {{anteriorBooking.localisation.zipCode}} {{anteriorBooking.localisation.city}}</td>
+              <td class="py-2 px-4 border-b">{{anteriorBooking.totalAmount}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #noAnteriorBookings>
+        <p class="text-gray-500">Vous n'avez pas de réservation</p>
+      </ng-template>
+    </div>
+
+
+    <button class="mt-4" routerLink="/chargin-stations-list" > Faire une réservation de borne </button>
+
+  </div>

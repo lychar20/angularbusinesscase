@@ -18,6 +18,7 @@ export class PowerListComponent implements OnInit {
   powers: Power[];
   async ngOnInit(): Promise<void>  {
     this.powers = await this.powerService.list();
+    console.log(this.powers);
   }
 
   async onClickDelete(id: number):Promise<void> {

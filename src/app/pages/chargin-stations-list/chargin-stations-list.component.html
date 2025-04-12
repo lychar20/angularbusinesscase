@@ -1,0 +1,49 @@
+<p>chargin-stations-list works!</p>
+
+
+<div class="bg-white min-h-screen p-5">
+    <h1 class="text-3xl font-bold mb-6">Les Charging Stations à réserver</h1>
+  
+    <div class="mb-8">
+      <h2 class="text-blue-600 text-2xl mb-4">Les Charging Stations</h2>
+      
+        <table class="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr class="bg-gray-100">
+                <th class="py-2 px-4 border-b">Id</th>
+                <th class="py-2 px-4 border-b">Nom</th>
+                <th class="py-2 px-4 border-b">Description</th>
+                <th class="py-2 px-4 border-b">Adresse</th>
+                <th class="py-2 px-4 border-b">Puissance</th>
+                <th class="py-2 px-4 border-b">Tarifs Horaires</th>
+                <th class="py-2 px-4 border-b">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let chargingStation of chargingStations" class="hover:bg-gray-50">
+              <td class="py-2 px-4 border-b">{{chargingStation.uuid}}</td>  
+              <td class="py-2 px-4 border-b">{{chargingStation.name}}</td>
+              <td class="py-2 px-4 border-b">{{chargingStation.accessDirectives}}</td>
+              <td class="py-2 px-4 border-b">
+                {{chargingStation.localisation.streetNumber}} {{chargingStation.localisation.streetName}}, {{chargingStation.localisation.zipCode}} {{chargingStation.localisation.city}}
+              </td>
+              <td class="py-2 px-4 border-b">{{chargingStation.power.value}}</td>
+              <td class="py-2 px-4 border-b">
+                <ul>
+                  <li *ngFor="let rate of chargingStation.hourlyRates">
+                    {{rate.value}} € pour {{rate.minimumDuration}} h
+                  </li>
+                </ul>
+              </td>
+              <td class="py-2 px-4 border-b">
+                <a [routerLink]="['/booking', chargingStation.uuid]" class="text-blue-500 hover:underline">Réserver</a> <!-- Lien cliquable -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+     
+    </div>
+  
+
+
+  </div>

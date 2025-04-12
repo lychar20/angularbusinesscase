@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       const {email, password, keepConnected} = this.form.value
       try { 
         await this.authService.login(email, password, keepConnected)
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/dasboard')
       }catch(e: any){
         /* this.errMsg = e.error */
         this.errMsg = "Invalide credentials"

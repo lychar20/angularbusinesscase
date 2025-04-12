@@ -14,8 +14,15 @@ export class PowerService {
   private readonly resource: 'power' = 'power'
 
   async list(): Promise<Power[]> { 
+
+    try {
     const http$: Observable<Power[]> = this.http.get<Power[]>(`${this.rootUrl}/${this.resource}`)
     return lastValueFrom(http$)
+  } catch (error) {
+    console.error('Erreur lors de la récupération des powers:', error);
+    return []; // Retourner un tableau vide en cas d'erreur
+}
+
   }
 
   async getById(id:number): Promise<Power> { 

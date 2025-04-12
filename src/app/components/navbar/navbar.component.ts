@@ -1,15 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { NavigationEnd, Router } from '@angular/router';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { AsyncPipe, NgIf, } from '@angular/common';
 import { filter, map, Observable } from 'rxjs';
 
-const NO_NAVBAR_URLS = ['login'];
+const NO_NAVBAR_URLS = ['login', 'register'];
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgIf, AsyncPipe],
+  imports: [NgIf, AsyncPipe, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -34,6 +34,12 @@ export class NavbarComponent implements OnInit {
   onClikLogOut(): void {
     this.authService.logout()
     this.router.navigateByUrl('/login')
+  }
+
+
+  onLogOut(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']); 
   }
 
 }
