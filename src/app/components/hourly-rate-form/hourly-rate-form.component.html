@@ -1,0 +1,36 @@
+<p>hourly-rate-form works!</p>
+
+<div>
+    <form [formGroup]="form" (ngSubmit)="onHourlyRateSubmitted()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="value">
+        Hourly Rate
+        </label>
+        <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="value" formControlName="value" placeholder="Enter hourly rate" 
+        type="number"
+        >
+    </div>
+    
+    <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="minimumDuration">
+        Minimum Duration
+        </label>
+        <input
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        id="minimumDuration" formControlName="minimumDuration" placeholder="Enter minimum duration" 
+        type="number"
+        >
+    </div>
+
+        <button
+            type="submit"
+            
+            class="w-full bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Submit
+        </button>
+
+    </form>
+</div>

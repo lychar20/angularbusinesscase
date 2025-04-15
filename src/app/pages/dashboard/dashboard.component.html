@@ -34,18 +34,27 @@
         <table class="min-w-full bg-white border border-gray-300">
           <thead>
             <tr class="bg-gray-100">
+              <th class="py-2 px-4 border-b">ID</th>
               <th class="py-2 px-4 border-b">Date et heure début</th>
               <th class="py-2 px-4 border-b">Date et heure fin</th>
               <th class="py-2 px-4 border-b">Ville, adresse</th>
               <th class="py-2 px-4 border-b">Montant réglé</th>
+              <th class="py-2 px-4 border-b">Status</th>
+              <th class="py-2 px-4 border-b">Actions</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let futureBooking of futureBookings" class="hover:bg-gray-50">
+              <td class="py-2 px-4 border-b">{{futureBooking.uuid}}</td>
               <td class="py-2 px-4 border-b">{{futureBooking.startedAt}}</td>
               <td class="py-2 px-4 border-b">{{futureBooking.finishedAt}}</td>
               <td class="py-2 px-4 border-b">{{futureBooking.localisation.streetNumber}} {{futureBooking.localisation.streetName}}, {{futureBooking.localisation.zipCode}} {{futureBooking.localisation.city}}</td>
               <td class="py-2 px-4 border-b">{{futureBooking.totalAmount}}</td>
+              <td class="py-2 px-4 border-b">{{futureBooking.status}}</td>
+              <td class="py-3 px-6 text-center flex justify-center space-x-4">
+                <a class="text-yellow-500 hover:text-yellow-700" [routerLink]="['/booking', 'edit', futureBooking.uuid]">Edit</a>
+                <button (click)="onClickDelete(futureBooking.uuid)">Delete</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -65,6 +74,7 @@
               <th class="py-2 px-4 border-b">Date et heure fin</th>
               <th class="py-2 px-4 border-b">Ville, adresse</th>
               <th class="py-2 px-4 border-b">Montant réglé</th>
+              <th class="py-2 px-4 border-b">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -73,6 +83,7 @@
               <td class="py-2 px-4 border-b">{{anteriorBooking.finishedAt}}</td>
               <td class="py-2 px-4 border-b">{{anteriorBooking.localisation.streetNumber}} {{anteriorBooking.localisation.streetName}}, {{anteriorBooking.localisation.zipCode}} {{anteriorBooking.localisation.city}}</td>
               <td class="py-2 px-4 border-b">{{anteriorBooking.totalAmount}}</td>
+              <td class="py-2 px-4 border-b">{{anteriorBooking.status}}</td>
             </tr>
           </tbody>
         </table>
@@ -83,6 +94,40 @@
     </div>
 
 
-    <button class="mt-4" routerLink="/chargin-stations-list" > Faire une réservation de borne </button>
+    <div class="mb-8">
+      <button class="mt-4 w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700" routerLink="/chargin-stations-list">Faire une réservation de borne</button>
+  </div>
+  <div class="mb-8">
+      <button class="mt-4 w-full bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-700" routerLink="/charging/add">Ajouter une borne de recharge</button>
+  </div>
+
+
+
+  <div class="mb-8">
+    <h2 class="text-blue-600 text-2xl mb-4">Charging Station crée recemment vous appartenant sans montant associé</h2>
+    <ng-container *ngIf="chargingStationsWithHourlyRateNulls.length > 0;">
+      <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="py-2 px-4 border-b">Id</th>
+            <th class="py-2 px-4 border-b">Name</th>
+            <th class="py-2 px-4 border-b">Localisation</th>
+            <th class="py-2 px-4 border-b">Montant</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let chargingStationsWithHourlyRateNull of chargingStationsWithHourlyRateNulls" class="hover:bg-gray-50">
+            <td class="py-2 px-4 border-b">{{chargingStationsWithHourlyRateNull.uuid}}</td>
+            <td class="py-2 px-4 border-b">{{chargingStationsWithHourlyRateNull.name}}</td>
+            <td class="py-2 px-4 border-b">{{chargingStationsWithHourlyRateNull.localisation.streetNumber}} {{chargingStationsWithHourlyRateNull.localisation.streetName}}, {{chargingStationsWithHourlyRateNull.localisation.zipCode}} {{chargingStationsWithHourlyRateNull.localisation.city}}</td>
+            <td class="py-2 px-4 border-b">
+              <a [routerLink]="['/hourlyRate', chargingStationsWithHourlyRateNull.uuid]" class="text-blue-500 hover:underline">Mettre un montant</a> <!-- Lien cliquable -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+  
 
   </div>

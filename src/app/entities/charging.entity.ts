@@ -18,19 +18,19 @@ export interface ChargingStation {
 }
 
 export interface AddChargingStationInput {
-    uuid: string;
     accessDirectives: string;
     name: string;
     onFoot: boolean;
     localisation: Localisation;
-    power: number;
+    hourlyRates: HourlyRate[]
+    power: Power;
 }
 
 export interface EditChargingStationInput {
-    uuid: string;
     accessDirectives: string;
-    name: String;
+    name: string;
     onFoot: boolean;
     localisation: Localisation;
-    power: number;
+    hourlyRates: HourlyRate[]
+    power: Power;
 }

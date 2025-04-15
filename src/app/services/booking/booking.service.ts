@@ -22,36 +22,26 @@ export class BookingService {
   }
 
 
-  async getById(id:number): Promise<Booking> { 
+  async getById(id:string): Promise<Booking> { 
       const http$: Observable<Booking> = this.http.get<Booking>(`${this.rootUrl}/${this.resource}/${id}`)
       return lastValueFrom(http$)
       }
 
 
-/*    async create(chargingStationId: string, addBookingInput: AddBookingInput): Promise<Booking> { 
-      const http$: Observable<Booking> = this.http.post<Booking>(`${this.rootUrl}/${this.resource}/${chargingStationId}`, addBookingInput)
+   async create(id: string, addBookingInput: AddBookingInput): Promise<Booking> { 
+      const http$: Observable<Booking> = this.http.post<Booking>(`${this.rootUrl}/${this.resource}/${id}`, addBookingInput)
       return lastValueFrom(http$)
-      }    */
+      }    
 
 
-      create(id: string, bookingData: AddBookingInput): Observable<any> {
-        const payload = {
-            
-            startedAt: bookingData.startedAt,
-            finishedAt: bookingData.finishedAt,
-           
-        };
-        return this.http.post(`${this.rootUrl}/${this.resource}/${id}`, payload);
-    } 
 
-
-  async edit(id:number, editBookingInput:EditBookingInput): Promise<void> {
+  async edit(id:string, editBookingInput:EditBookingInput): Promise<void> {
       const http$= this.http.put<void>(`${this.rootUrl}/${this.resource}/${id}`, editBookingInput)
       return lastValueFrom(http$)
       }
 
 
-  async delete(id:number): Promise<void> {
+  async delete(id:string): Promise<void> {
       const http$= this.http.delete<void>(`${this.rootUrl}/${this.resource}/${id}`)
       return lastValueFrom(http$)
       }   
@@ -73,6 +63,21 @@ export class BookingService {
   async findAnteriorBookingsWithUserLocalisation(): Promise<Booking[]> {
     const http$: Observable<Booking[]> = this.http.get<Booking[]>(`${this.rootUrl}/${this.resource}/matching-anterior-localisation`);
     return lastValueFrom(http$);
+}
+
+
+// Troouver les booking par user
+
+
+async findFutureBookings(): Promise<Booking[]> {
+  const http$: Observable<Booking[]> = this.http.get<Booking[]>(`${this.rootUrl}/${this.resource}/future`);
+  return lastValueFrom(http$);
+}
+
+
+async findAnteriorBookings(): Promise<Booking[]> {
+  const http$: Observable<Booking[]> = this.http.get<Booking[]>(`${this.rootUrl}/${this.resource}/anterior`);
+  return lastValueFrom(http$);
 }
   
 

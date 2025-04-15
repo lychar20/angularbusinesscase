@@ -49,4 +49,11 @@ export class ChargingStationService {
           }
 
 
+
+      async findChargingStationWithHourlyRateNUll(): Promise<ChargingStation[]> {
+        const http$: Observable<ChargingStation[]> = this.http.get<ChargingStation[]>(`${this.rootUrl}/${this.resource}/hourNull`);
+        return lastValueFrom(http$);
+        }    
+
+
 }

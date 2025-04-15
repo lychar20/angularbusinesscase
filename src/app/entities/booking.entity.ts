@@ -2,11 +2,12 @@ import { Localisation } from "./localisation.entity";
 
 export interface Booking {
 
+    uuid: string;
     startedAt: Date;
     finishedAt: Date;
     totalAmount: number;
-    localisation: Localisation
-   
+    localisation: Localisation;
+    status: string;
 }
 
 

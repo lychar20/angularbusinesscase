@@ -1,0 +1,168 @@
+<div class="flex justify-center items-center w-full h-full max-w-2xl mx-auto">
+    <form [formGroup]="form" (ngSubmit)="onChargingStationSubmitted()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+  
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+          Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="name" type="text" placeholder="Name" formControlName="name"
+        >
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="localisationId">
+          Localisation
+        </label>
+        <select
+          id="localisationId" formControlName="localisationId" (change)="onLocalisationChange($event)"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="">Select Localisation</option>
+          <option *ngFor="let loc of localisations" [value]="loc.id">{{ loc.id }}</option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="streetNumber">
+          Street Number
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="streetNumber" formControlName="streetNumber" placeholder="Street Number" 
+          [disabled]="true" 
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="streetName">
+          Street Name
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="streetName" formControlName="streetName" placeholder="Street Name" 
+          [disabled]="true"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="latitude">
+          Latitude
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="latitude" formControlName="latitude" placeholder="Latitude" 
+          [disabled]="true"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="longitude">
+          Longitude
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="longitude" formControlName="longitude" placeholder="Longitude" 
+          [disabled]="true"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="zipCode">
+          Zip Code
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="zipCode" formControlName="zipCode" placeholder="Zip Code" 
+          [disabled]="true"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="city">
+          City
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="city" formControlName="city" placeholder="City" 
+          [disabled]="true"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="accessDirectives">
+          Access Directives
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="accessDirectives" type="text" formControlName="accessDirectives" placeholder="Access Directives"
+        >
+      </div>
+
+      <div class="mb-4">
+        <label class="inline-flex items-center">
+          <input type="checkbox" formControlName="onFoot" class="form-checkbox text-blue-600 h-5 w-5" />
+          <span class="ml-2 text-gray-700">On Foot</span>
+        </label>
+      </div>
+
+    </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="powerId">
+          Power ID
+        </label>
+        <select
+          id="powerId" formControlName="powerId"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="">Select Power ID</option>
+          <option *ngFor="let power of powers" [value]="power.id">{{ power.id}}</option> <!-- Assurez-vous d'utiliser la propriété correcte -->
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="manualPowerId">
+          Or enter Power ID manually
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="manualPowerId" formControlName="manualPowerId" placeholder="Enter Power ID"
+        >
+      </div>
+
+      <!-- <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="value">
+          Hourly Rate
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="value" formControlName="value" placeholder="Enter hourly rate" 
+          type="number"
+        >
+      </div>
+      
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="minimumDuration">
+          Minimum Duration
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          id="minimumDuration" formControlName="minimumDuration" placeholder="Enter minimum duration" 
+          type="number"
+        >
+      </div> -->
+
+      <button
+        type="submit"
+        
+        class="w-full bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Submit
+      </button>
+    </form>
+</div>
+
+
+

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPowerComponent } from './edit-power.component';
+import { HourlyRateFormComponent } from './hourly-rate-form.component';
 
-describe('EditPowerComponent', () => {
-  let component: EditPowerComponent;
-  let fixture: ComponentFixture<EditPowerComponent>;
+describe('HourlyRateFormComponent', () => {
+  let component: HourlyRateFormComponent;
+  let fixture: ComponentFixture<HourlyRateFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditPowerComponent]
+      imports: [HourlyRateFormComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EditPowerComponent);
+    fixture = TestBed.createComponent(HourlyRateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

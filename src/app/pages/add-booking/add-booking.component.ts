@@ -29,6 +29,7 @@ export class AddBookingComponent {
     console.log("Received booking input:", addBookingInput); // Log des données reçues
     try {
         await this.bookingService.create(this.id, addBookingInput);
+        console.log(this.id);
         console.log("Booking created successfully"); // Confirmer que la réservation a été créée
         this.router.navigateByUrl('/dasboard');
     } catch (error) {

@@ -13,6 +13,10 @@ import { EditPowerComponent } from './pages/edit-power/edit-power.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { CharginStationsListComponent } from './pages/chargin-stations-list/chargin-stations-list.component';
 import { AddBookingComponent } from './pages/add-booking/add-booking.component';
+import { EditBookingComponent } from './pages/edit-booking/edit-booking.component';
+import { AddChargingStationComponent } from './pages/add-charging-station/add-charging-station.component';
+import { AddHourlyRateComponent } from './pages/add-hourly-rate/add-hourly-rate.component';
+import { EditHourlyRateComponent } from './pages/edit-hourly-rate/edit-hourly-rate.component';
 
 export const routes: Routes = [
     {path: '', canActivate: [noAuthGuard], component: WelcomeComponent},
@@ -22,10 +26,23 @@ export const routes: Routes = [
     {path: 'chargin-stations-list', canActivate: [authGuard], component: CharginStationsListComponent},
 
 
+    {path: 'charging', canActivate: [authGuard], children: [
+    //  {path: 'list', component: PowerListComponent},
+      {path: 'add', component: AddChargingStationComponent},
+    //  {path: 'edit/:id', component: EditBookingComponent},
+     // {path: ':id', component: PowerDetailComponent},
+  ]},
+
+  {path: 'hourlyRate', canActivate: [authGuard], children: [
+    {path: ':id', component: AddHourlyRateComponent},
+    {path: 'edit/:id', component: EditHourlyRateComponent},
+   // {path: ':id', component: PowerDetailComponent},
+]},
+
 
     {path: 'booking', canActivate: [authGuard], children: [
-      {path: ':id', component: AddBookingComponent}
-     // {path: 'edit/:id', component: EditPowerComponent},
+      {path: ':id', component: AddBookingComponent},
+      {path: 'edit/:id', component: EditBookingComponent},
      // {path: ':id', component: PowerDetailComponent},
   ]},
 

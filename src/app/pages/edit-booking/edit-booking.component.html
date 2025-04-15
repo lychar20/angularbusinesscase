@@ -1,0 +1,3 @@
+<app-booking-form *ngIf="booking"
+ (formSubmitted)="onBookingSubmitted($event)" [bookingToEdit]="booking"
+/>
